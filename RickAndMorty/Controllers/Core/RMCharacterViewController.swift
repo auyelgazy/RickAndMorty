@@ -10,18 +10,22 @@ import UIKit
 /// Controller to show and search for Characters
 final class RMCharacterViewController: UIViewController {
 
+    private let characterListView = CharacterListView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         title = "Characters"
+        setUpView()
+    }
 
-        RMService.shared.execute(.listCharactersRequests, expecting: RMGetAllCharactersResponse.self) { result in
-            switch result {
-            case .success(let model):
-                print(String(describing: model))
-            case .failure(let error):
-                print(String(describing: error))
-            }
-        }
+    private func setUpView() {
+        view.addSubview(characterListView)
+        NSLayoutConstraint.activate([
+            characterListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            characterListView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            characterListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            characterListView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor)
+        ])
     }
 }

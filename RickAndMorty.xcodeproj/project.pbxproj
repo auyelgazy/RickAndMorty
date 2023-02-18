@@ -27,6 +27,9 @@
 		8C90FCC029A0BF0A0089C65A /* RMRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C90FCBF29A0BF0A0089C65A /* RMRequest.swift */; };
 		8C90FCC329A0BF860089C65A /* RMEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C90FCC229A0BF860089C65A /* RMEndpoint.swift */; };
 		8CB701B129A10170004DA2AD /* RMGetAllCharactersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB701B029A10170004DA2AD /* RMGetAllCharactersResponse.swift */; };
+		8CB701B329A123D2004DA2AD /* CharacterListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB701B229A123D2004DA2AD /* CharacterListViewViewModel.swift */; };
+		8CB701B529A1245B004DA2AD /* CharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB701B429A1245B004DA2AD /* CharacterListView.swift */; };
+		8CB701B729A128BE004DA2AD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB701B629A128BE004DA2AD /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,9 @@
 		8C90FCBF29A0BF0A0089C65A /* RMRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMRequest.swift; sourceTree = "<group>"; };
 		8C90FCC229A0BF860089C65A /* RMEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMEndpoint.swift; sourceTree = "<group>"; };
 		8CB701B029A10170004DA2AD /* RMGetAllCharactersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMGetAllCharactersResponse.swift; sourceTree = "<group>"; };
+		8CB701B229A123D2004DA2AD /* CharacterListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewViewModel.swift; sourceTree = "<group>"; };
+		8CB701B429A1245B004DA2AD /* CharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListView.swift; sourceTree = "<group>"; };
+		8CB701B629A128BE004DA2AD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +122,7 @@
 		8C90FCA929A0B3990089C65A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8CB701B429A1245B004DA2AD /* CharacterListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -123,6 +130,7 @@
 		8C90FCAA29A0B3A30089C65A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				8CB701B229A123D2004DA2AD /* CharacterListViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -144,6 +152,7 @@
 				8C90FC9529A0ACCD0089C65A /* SceneDelegate.swift */,
 				8C90FC9C29A0ACCE0089C65A /* Assets.xcassets */,
 				8C90FC9E29A0ACCE0089C65A /* LaunchScreen.storyboard */,
+				8CB701B629A128BE004DA2AD /* Extensions.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -261,6 +270,7 @@
 			files = (
 				8CB701B129A10170004DA2AD /* RMGetAllCharactersResponse.swift in Sources */,
 				8C29DDB229A0DD0200B47D12 /* RMOrigin.swift in Sources */,
+				8CB701B529A1245B004DA2AD /* CharacterListView.swift in Sources */,
 				8C29DDB429A0DD7700B47D12 /* RMSingleLocation.swift in Sources */,
 				8C29DDB629A0DF6900B47D12 /* RMCharacterStatus.swift in Sources */,
 				8C29DDB829A0DF9A00B47D12 /* RMCharacterGender.swift in Sources */,
@@ -271,11 +281,13 @@
 				8C90FC9429A0ACCD0089C65A /* AppDelegate.swift in Sources */,
 				8C90FC9629A0ACCD0089C65A /* SceneDelegate.swift in Sources */,
 				8C90FCBC29A0B59D0089C65A /* RMSettingsViewController.swift in Sources */,
+				8CB701B729A128BE004DA2AD /* Extensions.swift in Sources */,
 				8C90FCBE29A0BEC20089C65A /* RMService.swift in Sources */,
 				8C90FCAF29A0B4650089C65A /* RMLocation.swift in Sources */,
 				8C90FCC329A0BF860089C65A /* RMEndpoint.swift in Sources */,
 				8C90FCB129A0B46C0089C65A /* RMCharacter.swift in Sources */,
 				8C90FCC029A0BF0A0089C65A /* RMRequest.swift in Sources */,
+				8CB701B329A123D2004DA2AD /* CharacterListViewViewModel.swift in Sources */,
 				8C90FCB629A0B5780089C65A /* RMCharacterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
