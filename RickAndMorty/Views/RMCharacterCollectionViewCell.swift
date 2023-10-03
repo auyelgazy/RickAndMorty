@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 /// Single cell for a character
 final class RMCharacterCollectionViewCell: UICollectionViewCell {
@@ -15,7 +16,6 @@ final class RMCharacterCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
@@ -23,7 +23,6 @@ final class RMCharacterCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .label
         label.font = .systemFont(ofSize: 18, weight: .medium)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -31,7 +30,6 @@ final class RMCharacterCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .secondaryLabel
         label.font = .systemFont(ofSize: 16, weight: .regular)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -41,7 +39,7 @@ final class RMCharacterCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.backgroundColor = .secondarySystemBackground
         contentView.addSubviews(imageView, nameLabel, statusLabel)
-        addConstraints()
+        setupConstraints()
         setUpLayer()
     }
 
@@ -62,24 +60,25 @@ final class RMCharacterCollectionViewCell: UICollectionViewCell {
         setUpLayer()
     }
 
-    private func addConstraints() {
-        NSLayoutConstraint.activate([
-            statusLabel.heightAnchor.constraint(equalToConstant: 30),
-            nameLabel.heightAnchor.constraint(equalToConstant: 30),
+    private func setupConstraints() {
+        statusLabel.snp.makeConstraints {
+            $0.height.equalTo(30)
+            $0.leading.equalToSuperview().offset(7)
+            $0.trailing.equalToSuperview().offset(-7)
+            $0.bottom.equalToSuperview().offset(-3)
+        }
 
-            statusLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 7),
-            statusLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -7),
-            nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 7),
-            nameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -7),
+        nameLabel.snp.makeConstraints {
+            $0.height.equalTo(30)
+            $0.leading.equalToSuperview().offset(7)
+            $0.trailing.equalToSuperview().offset(-7)
+            $0.bottom.equalTo(statusLabel.snp.top)
+        }
 
-            statusLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -3),
-            nameLabel.bottomAnchor.constraint(equalTo: statusLabel.topAnchor),
-
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            imageView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -3),
-        ])
+        imageView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(nameLabel.snp.top).offset(-3)
+        }
     }
 
     override func prepareForReuse() {

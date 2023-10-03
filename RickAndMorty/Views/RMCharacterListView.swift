@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol RMCharacterListViewDelegate: AnyObject {
     func rmCharacterListView(_ characterListView: RMCharacterListView,
@@ -23,7 +24,6 @@ final class RMCharacterListView: UIView {
     private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
         spinner.hidesWhenStopped = true
-        spinner.translatesAutoresizingMaskIntoConstraints = false
         return spinner
     }()
 
@@ -34,7 +34,6 @@ final class RMCharacterListView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.isHidden = true
         collectionView.alpha = 0
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(RMCharacterCollectionViewCell.self, forCellWithReuseIdentifier: RMCharacterCollectionViewCell.cellIdentifier)
         return collectionView
     }()
@@ -43,9 +42,8 @@ final class RMCharacterListView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        translatesAutoresizingMaskIntoConstraints = false
         addSubviews(collectionView, spinner)
-        addConstraints()
+        setupConstraints()
         spinner.startAnimating()
         viewModel.delegate = self
         viewModel.fetchCharacters()
@@ -56,23 +54,20 @@ final class RMCharacterListView: UIView {
         fatalError("Unsupported")
     }
 
-    private func addConstraints() {
-        NSLayoutConstraint.activate([
-            spinner.widthAnchor.constraint(equalToConstant: 100),
-            spinner.heightAnchor.constraint(equalToConstant: 100),
-            spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
-            spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
-
-            collectionView.topAnchor.constraint(equalTo: topAnchor),
-            collectionView.rightAnchor.constraint(equalTo: rightAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            collectionView.leftAnchor.constraint(equalTo: leftAnchor)
-        ])
-    }
-
     private func setUpCollectionView() {
         collectionView.dataSource = viewModel
         collectionView.delegate = viewModel
+    }
+
+    private func setupConstraints() {
+        spinner.snp.makeConstraints {
+            $0.height.width.equalTo(100)
+            $0.center.equalToSuperview()
+        }
+
+        collectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 }
 

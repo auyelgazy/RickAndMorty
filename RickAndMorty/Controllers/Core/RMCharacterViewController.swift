@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 /// Controller to show and search for Characters
 final class RMCharacterViewController: UIViewController, RMCharacterListViewDelegate {
@@ -22,12 +23,13 @@ final class RMCharacterViewController: UIViewController, RMCharacterListViewDele
     private func setUpView() {
         characterListView.delegate = self
         view.addSubview(characterListView)
-        NSLayoutConstraint.activate([
-            characterListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            characterListView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            characterListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            characterListView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor)
-        ])
+        setupConstraints()
+    }
+
+    private func setupConstraints() {
+        characterListView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 
     func rmCharacterListView(_ characterListView: RMCharacterListView, didSelectCharacter character: RMCharacter) {
