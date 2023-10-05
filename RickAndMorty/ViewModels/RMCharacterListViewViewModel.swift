@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RMCharacterListViewViewModelDelegate: AnyObject {
-    func didLoadInitialCharacter()
+    func didLoadInitialCharacters()
     func didLoadMoreCharacters(with newIndexPaths: [IndexPath])
 
     func didSelectCharacter(_ character: RMCharacter)
