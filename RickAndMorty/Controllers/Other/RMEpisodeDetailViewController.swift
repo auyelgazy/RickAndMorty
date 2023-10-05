@@ -6,15 +6,18 @@
 //
 
 import UIKit
+import SnapKit
 
-final class RMEpisodeDetailViewController: UIViewController {
+final class RMEpisodeDetailViewController: UIViewController, RMEpisodeDetailViewViewModelDelegate {
 
-    private let url: URL?
+    private let viewModel: RMEpisodeDetailViewViewModel
+
+    private let detailView = RMEpisodeDetailView()
 
     // MARK: - Init
 
     init(url: URL?) {
-        self.url = url
+        self.viewModel = RMEpisodeDetailViewViewModel(endpointUrl: url)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -27,6 +30,24 @@ final class RMEpisodeDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Episode"
-        view.backgroundColor = .blue
+        view.addSubview(detailView)
+        setupConstraints()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapShare))
+        viewModel.delegate = self
+        viewModel.fetchEpisodeData()
+    }
+
+    private func setupConstraints() {
+        detailView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
+
+    @objc private func didTapShare() {
+
+    }
+
+    func didFetchEpisodeDetails() {
+        detailView.configure(with: viewModel)
     }
 }
