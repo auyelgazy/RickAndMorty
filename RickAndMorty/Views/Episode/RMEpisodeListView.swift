@@ -25,7 +25,6 @@ final class RMEpisodeListView: UIView {
     private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
         spinner.hidesWhenStopped = true
-        spinner.translatesAutoresizingMaskIntoConstraints = false
         return spinner
     }()
 
@@ -36,7 +35,6 @@ final class RMEpisodeListView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.isHidden = true
         collectionView.alpha = 0
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(RMCharacterEpisodeCollectionViewCell.self,
                                 forCellWithReuseIdentifier: RMCharacterEpisodeCollectionViewCell.cellIdentifer)
         collectionView.register(RMFooterLoadingCollectionReusableView.self,
@@ -48,9 +46,8 @@ final class RMEpisodeListView: UIView {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        translatesAutoresizingMaskIntoConstraints = false
         addSubviews(collectionView, spinner)
-        addConstraints()
+        setupConstraints()
         spinner.startAnimating()
         viewModel.delegate = self
         viewModel.fetchEpisodes()
@@ -61,18 +58,15 @@ final class RMEpisodeListView: UIView {
         fatalError("Unsupported")
     }
 
-    private func addConstraints() {
-        NSLayoutConstraint.activate([
-            spinner.widthAnchor.constraint(equalToConstant: 100),
-            spinner.heightAnchor.constraint(equalToConstant: 100),
-            spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
-            spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
+    private func setupConstraints() {
+        spinner.snp.makeConstraints {
+            $0.height.width.equalTo(100)
+            $0.center.equalToSuperview()
+        }
 
-            collectionView.topAnchor.constraint(equalTo: topAnchor),
-            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
-            collectionView.rightAnchor.constraint(equalTo: rightAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
-        ])
+        collectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 
     private func setUpCollectionView() {

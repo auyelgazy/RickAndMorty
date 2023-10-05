@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class RMEpisodeDetailViewController: UIViewController, RMEpisodeDetailViewViewModelDelegate {
+final class RMEpisodeDetailViewController: UIViewController, RMEpisodeDetailViewViewModelDelegate, RMEpisodeDetailViewDelegate {
 
     private let viewModel: RMEpisodeDetailViewViewModel
 
@@ -29,9 +29,11 @@ final class RMEpisodeDetailViewController: UIViewController, RMEpisodeDetailView
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         title = "Episode"
         view.addSubview(detailView)
         setupConstraints()
+        detailView.delegate = self
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapShare))
         viewModel.delegate = self
         viewModel.fetchEpisodeData()
@@ -49,5 +51,13 @@ final class RMEpisodeDetailViewController: UIViewController, RMEpisodeDetailView
 
     func didFetchEpisodeDetails() {
         detailView.configure(with: viewModel)
+    }
+
+    // MARK: - View Delegate
+    func rmEpisodeDetailView(_ detailView: RMEpisodeDetailView, didSelect character: RMCharacter) {
+        let vc = RMCharacterDetailViewController(viewModel: .init(character: character))
+        vc.title = character.name
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

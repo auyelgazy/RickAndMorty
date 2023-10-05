@@ -294,7 +294,6 @@
 			children = (
 				8CE6AA662ACEFA0F002CEC37 /* RMEpisodeDetailViewViewModel.swift */,
 				8CE6AA682ACEFA44002CEC37 /* RMEpisodeInfoCollectionViewCellViewModel.swift */,
-				8CE6AA722ACEFC24002CEC37 /* RMEpisodeInfoCollectionViewCell.swift */,
 			);
 			path = EpisodeDetail;
 			sourceTree = "<group>";
@@ -311,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				8CE6AA702ACEFB3B002CEC37 /* RMEpisodeDetailView.swift */,
+				8CE6AA722ACEFC24002CEC37 /* RMEpisodeInfoCollectionViewCell.swift */,
 			);
 			path = EpisodeDetail;
 			sourceTree = "<group>";
