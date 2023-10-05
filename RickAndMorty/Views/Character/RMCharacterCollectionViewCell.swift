@@ -40,14 +40,14 @@ final class RMCharacterCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .secondarySystemBackground
         contentView.addSubviews(imageView, nameLabel, statusLabel)
         setupConstraints()
-        setUpLayer()
+        setupLayer()
     }
 
     required init?(coder: NSCoder) {
         fatalError("Unsupported")
     }
 
-    private func setUpLayer() {
+    private func setupLayer() {
         contentView.layer.cornerRadius = 8
         contentView.layer.shadowColor = UIColor.label.cgColor
         contentView.layer.shadowRadius = 4
@@ -57,7 +57,7 @@ final class RMCharacterCollectionViewCell: UICollectionViewCell {
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        setUpLayer()
+        setupLayer()
     }
 
     private func setupConstraints() {
