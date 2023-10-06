@@ -56,6 +56,9 @@
 		8CE6AA7F2ACF2F54002CEC37 /* RMLocationTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE6AA7E2ACF2F54002CEC37 /* RMLocationTableViewCellViewModel.swift */; };
 		8CE6AA812ACF2F87002CEC37 /* RMLocationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE6AA802ACF2F87002CEC37 /* RMLocationViewViewModel.swift */; };
 		8CE6AA832ACF2FD9002CEC37 /* RMLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE6AA822ACF2FD9002CEC37 /* RMLocationTableViewCell.swift */; };
+		8CE6AA872ACFB751002CEC37 /* RMLocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE6AA862ACFB751002CEC37 /* RMLocationDetailViewController.swift */; };
+		8CE6AA892ACFB7C7002CEC37 /* RMLocationDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE6AA882ACFB7C7002CEC37 /* RMLocationDetailViewViewModel.swift */; };
+		8CE6AA8C2ACFB99A002CEC37 /* RMLocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE6AA8B2ACFB99A002CEC37 /* RMLocationDetailView.swift */; };
 		8CF2F27A29A4DB2E006891BD /* RMCharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2F27929A4DB2E006891BD /* RMCharacterDetailViewController.swift */; };
 		8CF2F27C29A4DBD8006891BD /* RMCharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2F27B29A4DBD8006891BD /* RMCharacterDetailView.swift */; };
 		8CF2F27E29A4DC02006891BD /* RMCharacterDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2F27D29A4DC02006891BD /* RMCharacterDetailViewViewModel.swift */; };
@@ -112,6 +115,9 @@
 		8CE6AA7E2ACF2F54002CEC37 /* RMLocationTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocationTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		8CE6AA802ACF2F87002CEC37 /* RMLocationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocationViewViewModel.swift; sourceTree = "<group>"; };
 		8CE6AA822ACF2FD9002CEC37 /* RMLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocationTableViewCell.swift; sourceTree = "<group>"; };
+		8CE6AA862ACFB751002CEC37 /* RMLocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocationDetailViewController.swift; sourceTree = "<group>"; };
+		8CE6AA882ACFB7C7002CEC37 /* RMLocationDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocationDetailViewViewModel.swift; sourceTree = "<group>"; };
+		8CE6AA8B2ACFB99A002CEC37 /* RMLocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocationDetailView.swift; sourceTree = "<group>"; };
 		8CF2F27929A4DB2E006891BD /* RMCharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMCharacterDetailViewController.swift; sourceTree = "<group>"; };
 		8CF2F27B29A4DBD8006891BD /* RMCharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMCharacterDetailView.swift; sourceTree = "<group>"; };
 		8CF2F27D29A4DC02006891BD /* RMCharacterDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMCharacterDetailViewViewModel.swift; sourceTree = "<group>"; };
@@ -215,6 +221,7 @@
 				8CE6AA6C2ACEFAD7002CEC37 /* Episode */,
 				8CE6AA6F2ACEFB20002CEC37 /* EpisodeDetail */,
 				8CE6AA782ACF2CF3002CEC37 /* Location */,
+				8CE6AA8A2ACFB979002CEC37 /* LocationDetail */,
 				8C6EAA362ACEB59800702302 /* Character */,
 				8C6EAA372ACEB5B500702302 /* CharacterDetail */,
 				8C6101212ACDD99300CC2D88 /* RMFooterLoadingCollectionReusableView.swift */,
@@ -342,8 +349,17 @@
 			children = (
 				8CE6AA7E2ACF2F54002CEC37 /* RMLocationTableViewCellViewModel.swift */,
 				8CE6AA802ACF2F87002CEC37 /* RMLocationViewViewModel.swift */,
+				8CE6AA882ACFB7C7002CEC37 /* RMLocationDetailViewViewModel.swift */,
 			);
 			path = Locations;
+			sourceTree = "<group>";
+		};
+		8CE6AA8A2ACFB979002CEC37 /* LocationDetail */ = {
+			isa = PBXGroup;
+			children = (
+				8CE6AA8B2ACFB99A002CEC37 /* RMLocationDetailView.swift */,
+			);
+			path = LocationDetail;
 			sourceTree = "<group>";
 		};
 		8CF2F27829A4DB15006891BD /* Other */ = {
@@ -352,6 +368,7 @@
 				8CF2F27929A4DB2E006891BD /* RMCharacterDetailViewController.swift */,
 				8C6EAA342ACEB53100702302 /* RMEpisodeDetailViewController.swift */,
 				8CE6AA5F2ACEF766002CEC37 /* RMSearchViewController.swift */,
+				8CE6AA862ACFB751002CEC37 /* RMLocationDetailViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -437,6 +454,7 @@
 				8C6EAA442ACEB94900702302 /* RMCharacterEpisodeCollectionViewCell.swift in Sources */,
 				8CE6AA602ACEF766002CEC37 /* RMSearchViewController.swift in Sources */,
 				8CE6AA6B2ACEFA5D002CEC37 /* RMEpisodeListViewViewModel.swift in Sources */,
+				8CE6AA872ACFB751002CEC37 /* RMLocationDetailViewController.swift in Sources */,
 				8C29DDB229A0DD0200B47D12 /* RMOrigin.swift in Sources */,
 				8C6EAA422ACEB93200702302 /* RMCharacterInfoCollectionViewCell.swift in Sources */,
 				8CB701B529A1245B004DA2AD /* RMCharacterListView.swift in Sources */,
@@ -462,6 +480,7 @@
 				8C6EAA3C2ACEB84B00702302 /* RMCharacterPhotoCollectionViewCellViewModel.swift in Sources */,
 				8CE6AA692ACEFA44002CEC37 /* RMEpisodeInfoCollectionViewCellViewModel.swift in Sources */,
 				8CE6AA832ACF2FD9002CEC37 /* RMLocationTableViewCell.swift in Sources */,
+				8CE6AA892ACFB7C7002CEC37 /* RMLocationDetailViewViewModel.swift in Sources */,
 				8C6101242ACDDA5800CC2D88 /* RMImageLoader.swift in Sources */,
 				8CE6AA712ACEFB3B002CEC37 /* RMEpisodeDetailView.swift in Sources */,
 				8CE6AA6E2ACEFAED002CEC37 /* RMEpisodeListView.swift in Sources */,
@@ -473,6 +492,7 @@
 				8C90FCB129A0B46C0089C65A /* RMCharacter.swift in Sources */,
 				8C6EAA352ACEB53100702302 /* RMEpisodeDetailViewController.swift in Sources */,
 				8C09C70329A343610011C65F /* RMCharacterCollectionViewCellViewModel.swift in Sources */,
+				8CE6AA8C2ACFB99A002CEC37 /* RMLocationDetailView.swift in Sources */,
 				8CE6AA7F2ACF2F54002CEC37 /* RMLocationTableViewCellViewModel.swift in Sources */,
 				8CE6AA7C2ACF2F06002CEC37 /* RMGetAllLocationsResponse.swift in Sources */,
 				8C90FCC029A0BF0A0089C65A /* RMRequest.swift in Sources */,
