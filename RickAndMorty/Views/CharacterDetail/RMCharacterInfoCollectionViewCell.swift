@@ -41,7 +41,7 @@ final class RMCharacterInfoCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .tertiarySystemBackground
+        contentView.backgroundColor = .systemGray4
         contentView.layer.cornerRadius = 8
         contentView.layer.masksToBounds = true
         contentView.addSubviews(titleContainerView, valueLabel, iconImageView)

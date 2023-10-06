@@ -30,11 +30,11 @@ final class RMLocationDetailViewController: UIViewController, RMLocationDetailVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         view.addSubview(detailView)
         setupConstraints()
         detailView.delegate = self
         title = "Location"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapShare))
 
         viewModel.delegate = self
         viewModel.fetchLocationData()
@@ -46,24 +46,14 @@ final class RMLocationDetailViewController: UIViewController, RMLocationDetailVi
         }
     }
 
-    @objc
-    private func didTapShare() {
-
-    }
-
     // MARK: - View Delegate
 
-    func rmEpisodeDetailView(
-        _ detailView: RMLocationDetailView,
-        didSelect character: RMCharacter
-    ) {
+    func rmEpisodeDetailView(_ detailView: RMLocationDetailView, didSelect character: RMCharacter) {
         let vc = RMCharacterDetailViewController(viewModel: .init(character: character))
         vc.title = character.name
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
     }
-
-    // MARK: - ViewModel Delegate
 
     func didFetchLocationDetails() {
         detailView.configure(with: viewModel)

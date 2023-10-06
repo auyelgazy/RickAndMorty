@@ -49,6 +49,8 @@ final class RMSearchOptionPickerViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDelegate, DataSource
+
 extension RMSearchOptionPickerViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return option.choices.count

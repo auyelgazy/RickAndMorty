@@ -1,41 +1,39 @@
 //
-//  RMFooterLoadingCollectionReusableView.swift
+//  RMTableLoadingFooterView.swift
 //  RickAndMorty
 //
-//  Created by Kuanysh al-Khattab Auyelgazy on 04.10.2023.
+//  Created by Kuanysh al-Khattab Auyelgazy on 06.10.2023.
 //
 
 import UIKit
 import SnapKit
 
-final class RMFooterLoadingCollectionReusableView: UICollectionReusableView {
-    static let identifier = "RMFooterLoadingCollectionReusableView"
+final class RMTableLoadingFooterView: UIView {
     
     private let spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView(style: .large)
+        let spinner = UIActivityIndicatorView()
         spinner.hidesWhenStopped = true
         return spinner
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemBackground
+        
         addSubview(spinner)
+        spinner.startAnimating()
+        
         setupConstraints()
     }
     
     required init?(coder: NSCoder) {
-        fatalError("Unsupported")
+        fatalError()
     }
     
     private func setupConstraints() {
         spinner.snp.makeConstraints {
-            $0.height.width.equalTo(100)
+            $0.width.height.equalTo(55)
             $0.center.equalToSuperview()
         }
     }
     
-    public func startAnimating() {
-        spinner.startAnimating()
-    }
 }

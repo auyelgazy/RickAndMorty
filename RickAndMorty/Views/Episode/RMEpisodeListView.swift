@@ -17,17 +17,17 @@ protocol RMEpisodeListViewDelegate: AnyObject {
 
 /// View that handles showing list of episodes, loader, etc.
 final class RMEpisodeListView: UIView {
-
+    
     public weak var delegate: RMEpisodeListViewDelegate?
-
+    
     private let viewModel = RMEpisodeListViewViewModel()
-
+    
     private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
         spinner.hidesWhenStopped = true
         return spinner
     }()
-
+    
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -42,7 +42,7 @@ final class RMEpisodeListView: UIView {
                                 withReuseIdentifier: RMFooterLoadingCollectionReusableView.identifier)
         return collectionView
     }()
-
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,22 +53,22 @@ final class RMEpisodeListView: UIView {
         viewModel.fetchEpisodes()
         setUpCollectionView()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("Unsupported")
     }
-
+    
     private func setupConstraints() {
         spinner.snp.makeConstraints {
             $0.height.width.equalTo(100)
             $0.center.equalToSuperview()
         }
-
+        
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
-
+    
     private func setUpCollectionView() {
         collectionView.dataSource = viewModel
         collectionView.delegate = viewModel
@@ -84,13 +84,13 @@ extension RMEpisodeListView: RMEpisodeListViewViewModelDelegate {
             self.collectionView.alpha = 1
         }
     }
-
+    
     func didLoadMoreEpisodes(with newIndexPaths: [IndexPath]) {
         collectionView.performBatchUpdates {
             self.collectionView.insertItems(at: newIndexPaths)
         }
     }
-
+    
     func didSelectEpisode(_ episode: RMEpisode) {
         delegate?.rmEpisodeListView(self, didSelectEpisode: episode)
     }

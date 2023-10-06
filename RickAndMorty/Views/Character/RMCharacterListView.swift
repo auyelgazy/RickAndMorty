@@ -9,24 +9,22 @@ import UIKit
 import SnapKit
 
 protocol RMCharacterListViewDelegate: AnyObject {
-    func rmCharacterListView(_ characterListView: RMCharacterListView,
-                             didSelectCharacter character: RMCharacter
-    )
+    func rmCharacterListView(_ characterListView: RMCharacterListView, didSelectCharacter character: RMCharacter)
 }
 
 /// View that handles showing list of characters, loader, etc.
 final class RMCharacterListView: UIView {
-
+    
     public weak var delegate: RMCharacterListViewDelegate?
-
+    
     private let viewModel = RMCharacterListViewViewModel()
-
+    
     private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
         spinner.hidesWhenStopped = true
         return spinner
     }()
-
+    
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -40,9 +38,9 @@ final class RMCharacterListView: UIView {
                                 withReuseIdentifier: RMFooterLoadingCollectionReusableView.identifier)
         return collectionView
     }()
-
+    
     // MARK: - Init
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubviews(collectionView, spinner)
@@ -52,22 +50,22 @@ final class RMCharacterListView: UIView {
         viewModel.fetchCharacters()
         setUpCollectionView()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("Unsupported")
     }
-
+    
     private func setUpCollectionView() {
         collectionView.dataSource = viewModel
         collectionView.delegate = viewModel
     }
-
+    
     private func setupConstraints() {
         spinner.snp.makeConstraints {
             $0.height.width.equalTo(100)
             $0.center.equalToSuperview()
         }
-
+        
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
@@ -75,11 +73,11 @@ final class RMCharacterListView: UIView {
 }
 
 extension RMCharacterListView: RMCharacterListViewViewModelDelegate {
-
+    
     func didSelectCharacter(_ character: RMCharacter) {
         delegate?.rmCharacterListView(self, didSelectCharacter: character)
     }
-
+    
     func didLoadInitialCharacters() {
         spinner.stopAnimating()
         collectionView.isHidden = false
@@ -88,7 +86,7 @@ extension RMCharacterListView: RMCharacterListViewViewModelDelegate {
             self.collectionView.alpha = 1
         }
     }
-
+    
     func didLoadMoreCharacters(with newIndexPaths: [IndexPath]) {
         collectionView.performBatchUpdates {
             self.collectionView.insertItems(at: newIndexPaths)

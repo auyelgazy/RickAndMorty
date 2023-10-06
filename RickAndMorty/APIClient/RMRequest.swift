@@ -94,7 +94,6 @@ final class RMRequest {
             if !components.isEmpty, components.count >= 2 {
                 let endpointString = components[0]
                 let queryItemsString = components[1]
-                // value=name&value=name
                 let queryItems: [URLQueryItem] = queryItemsString.components(separatedBy: "&").compactMap({
                     guard $0.contains("=") else {
                         return nil

@@ -16,9 +16,9 @@ protocol RMLocationDetailViewDelegate: AnyObject {
 }
 
 final class RMLocationDetailView: UIView {
-
+    
     public weak var delegate: RMLocationDetailViewDelegate?
-
+    
     private var viewModel: RMLocationDetailViewViewModel? {
         didSet {
             spinner.stopAnimating()
@@ -29,17 +29,17 @@ final class RMLocationDetailView: UIView {
             }
         }
     }
-
+    
     private var collectionView: UICollectionView?
-
+    
     private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView()
         spinner.hidesWhenStopped = true
         return spinner
     }()
-
+    
     // MARK: - Init
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .systemBackground
@@ -49,23 +49,23 @@ final class RMLocationDetailView: UIView {
         setupConstraints()
         spinner.startAnimating()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("Unsupported")
     }
-
+    
     private func setupConstraints() {
         spinner.snp.makeConstraints {
             $0.height.width.equalTo(100)
             $0.center.equalToSuperview()
         }
-
+        
         guard let collectionView = collectionView else { return }
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
-
+    
     private func createColectionView() -> UICollectionView {
         let layout = UICollectionViewCompositionalLayout { section, _ in
             return self.layout(for: section)
@@ -84,8 +84,7 @@ final class RMLocationDetailView: UIView {
                                 forCellWithReuseIdentifier: RMCharacterCollectionViewCell.cellIdentifier)
         return collectionView
     }
-
-    // MARK: - Public
+    
     public func configure(with viewModel: RMLocationDetailViewViewModel) {
         self.viewModel = viewModel
     }
@@ -95,13 +94,13 @@ extension RMLocationDetailView: UICollectionViewDelegate, UICollectionViewDataSo
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return viewModel?.cellViewModels.count ?? 0
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let sections = viewModel?.cellViewModels else {
             return 0
         }
         let sectionType = sections[section]
-
+        
         switch sectionType {
         case .information(let viewModels):
             return viewModels.count
@@ -109,14 +108,14 @@ extension RMLocationDetailView: UICollectionViewDelegate, UICollectionViewDataSo
             return viewModels.count
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
+        
         guard let sections = viewModel?.cellViewModels else {
             fatalError("No viewModel")
         }
         let sectionType = sections[indexPath.section]
-
+        
         switch sectionType {
         case .information(let viewModels):
             let cellViewModel = viewModels[indexPath.row]
@@ -140,7 +139,7 @@ extension RMLocationDetailView: UICollectionViewDelegate, UICollectionViewDataSo
             return cell
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         guard let viewModel = viewModel else {
@@ -148,7 +147,7 @@ extension RMLocationDetailView: UICollectionViewDelegate, UICollectionViewDataSo
         }
         let sections = viewModel.cellViewModels
         let sectionType = sections[indexPath.section]
-
+        
         switch sectionType {
         case .information:
             break
@@ -166,7 +165,7 @@ extension RMLocationDetailView {
         guard let sections = viewModel?.cellViewModels else {
             return createInfoLayout()
         }
-
+        
         switch sections[section] {
         case .information:
             return createInfoLayout()
@@ -174,31 +173,31 @@ extension RMLocationDetailView {
             return createCharacterLayout()
         }
     }
-
+    
     func createInfoLayout() -> NSCollectionLayoutSection {
-
+        
         let item = NSCollectionLayoutItem(layoutSize: .init(
             widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(1))
         )
-
+        
         item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-
+        
         let group = NSCollectionLayoutGroup.vertical(
             layoutSize: .init(widthDimension: .fractionalWidth(1),
                               heightDimension: .absolute(80)),
             subitems: [item]
         )
-
+        
         let section = NSCollectionLayoutSection(group: group)
-
+        
         return section
     }
-
+    
     func createCharacterLayout() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(0.5),
+                widthDimension: .fractionalWidth(UIDevice.isIphone ? 0.5 : 0.25),
                 heightDimension: .fractionalHeight(1.0)
             )
         )
@@ -208,13 +207,13 @@ extension RMLocationDetailView {
             bottom: 5,
             trailing: 10
         )
-
+        
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize:  NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .absolute(260)
+                heightDimension: .absolute(UIDevice.isIphone ? 260 : 320)
             ),
-            subitems: [item, item]
+            subitems: UIDevice.isIphone ? [item, item] : [item, item, item, item]
         )
         let section = NSCollectionLayoutSection(group: group)
         return section

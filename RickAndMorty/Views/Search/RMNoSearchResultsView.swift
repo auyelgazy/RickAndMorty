@@ -38,14 +38,14 @@ final class RMNoSearchResultsView: UIView {
     required init?(coder: NSCoder) {
         fatalError()
     }
-
+    
     private func setupConstraints() {
         iconView.snp.makeConstraints {
             $0.width.height.equalTo(90)
             $0.top.equalToSuperview()
             $0.centerX.equalToSuperview()
         }
-
+        
         label.snp.makeConstraints {
             $0.left.right.bottom.equalToSuperview()
             $0.top.equalTo(iconView.snp.bottom).offset(10)

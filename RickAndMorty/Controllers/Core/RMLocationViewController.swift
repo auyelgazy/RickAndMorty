@@ -45,15 +45,13 @@ class RMLocationViewController: UIViewController, RMLocationViewViewModelDelegat
         navigationController?.pushViewController(vc, animated: true)
     }
 
-    // MARK: - RMLocationView Delegate
+    // MARK: - Delegate
 
     func rmLocationView(_ locationView: RMLocationView, didSelect location: RMLocation) {
         let vc = RMLocationDetailViewController(location: location)
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
     }
-
-    // MARK: - LocationViewModel Delegate
 
     func didFetchInitialLocations() {
         primaryView.configure(with: viewModel)

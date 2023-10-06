@@ -33,15 +33,9 @@ final class RMCharacterDetailViewController: UIViewController {
         view.backgroundColor = .systemBackground
         title = viewModel.title
         view.addSubviews(detailView)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapShare))
         setupConstraints()
         detailView.collectionView?.delegate = self
         detailView.collectionView?.dataSource = self
-    }
-
-    @objc
-    private func didTapShare() {
-        // share character info
     }
 
     private func setupConstraints() {
@@ -50,6 +44,8 @@ final class RMCharacterDetailViewController: UIViewController {
         }
     }
 }
+
+// MARK: - UICollectionViewDelegate, DataSource
 
 extension RMCharacterDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 

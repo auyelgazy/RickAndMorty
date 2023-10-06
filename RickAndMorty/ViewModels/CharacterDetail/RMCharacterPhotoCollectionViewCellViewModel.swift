@@ -10,6 +10,9 @@ import Foundation
 final class RMCharacterPhotoCollectionViewCellViewModel {
     private let imageUrl: URL?
     
+    
+    // MARK: - Init
+    
     init(imageUrl: URL?) {
         self.imageUrl = imageUrl
     }
