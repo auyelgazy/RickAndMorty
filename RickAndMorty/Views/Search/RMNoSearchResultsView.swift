@@ -52,20 +52,6 @@ final class RMNoSearchResultsView: UIView {
         }
     }
     
-    private func addConstraints() {
-        NSLayoutConstraint.activate([
-            iconView.widthAnchor.constraint(equalToConstant: 90),
-            iconView.heightAnchor.constraint(equalToConstant: 90),
-            iconView.topAnchor.constraint(equalTo: topAnchor),
-            iconView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
-            label.leftAnchor.constraint(equalTo: leftAnchor),
-            label.rightAnchor.constraint(equalTo: rightAnchor),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor),
-            label.topAnchor.constraint(equalTo: iconView.bottomAnchor, constant: 10),
-        ])
-    }
-    
     private func configure() {
         label.text = viewModel.title
         iconView.image = viewModel.image
