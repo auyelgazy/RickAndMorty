@@ -6,15 +6,33 @@
 //
 
 import UIKit
+import SnapKit
 
 /// Controller to show and search for Locations
-class RMLocationViewController: UIViewController {
+class RMLocationViewController: UIViewController, RMLocationViewViewModelDelegate, RMLocationViewDelegate {
+
+    private let primaryView = RMLocationView()
+
+    private let viewModel = RMLocationViewViewModel()
+
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        primaryView.delegate = self
         title = "Locations"
+        view.addSubviews(primaryView)
         addSearchButton()
+        setupConstraints()
+        viewModel.delegate = self
+        viewModel.fetchLocations()
+    }
+
+    private func setupConstraints() {
+        primaryView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
 
     private func addSearchButton() {
@@ -23,5 +41,19 @@ class RMLocationViewController: UIViewController {
 
     @objc private func didTapSearch() {
 
+    }
+
+    // MARK: - RMLocationView Delegate
+
+    func rmLocationView(_ locationView: RMLocationView, didSelect location: RMLocation) {
+        let vc = RMLocationDetailViewController(location: location)
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+    // MARK: - LocationViewModel Delegate
+
+    func didFetchInitialLocations() {
+        primaryView.configure(with: viewModel)
     }
 }
